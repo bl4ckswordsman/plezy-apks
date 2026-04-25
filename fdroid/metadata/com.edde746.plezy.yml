@@ -1,0 +1,18 @@
+Categories:
+  - Multimedia
+AuthorName: edde746
+Name: Plezy
+Summary: Modern cross-platform Plex client built with Flutter
+Description: |
+  A modern Plex client for desktop and mobile.
+  Built with Flutter for native performance and a clean interface.
+
+  Republished standalone APKs for Obtainium and F-Droid use.
+
+License: GPL-3.0-only
+SourceCode: https://github.com/edde746/plezy
+IssueTracker: https://github.com/edde746/plezy/issues
+Changelog: https://github.com/edde746/plezy/releases
+
+AutoUpdateMode: None
+UpdateCheckMode: None
