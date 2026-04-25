@@ -64,7 +64,7 @@ jobs:
           KEYDNAME: ${{ secrets.KEYDNAME }}
         run: |
           {
-            echo "repo_url: \"https://bl4ckswordsman.github.io/plezy-apks/fdroid/repo\""
+            echo "repo_url: \"https://bl4ckswordsman.github.io/plezy-apks\""
             echo "repo_name: \"Plezy APKs\""
             echo "repo_description: \"Standalone Plezy APKs extracted from upstream releases.\""
             echo "repo_keyalias: \"$REPO_KEYALIAS\""

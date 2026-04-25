@@ -17,7 +17,7 @@ Visit the **[F-Droid repo page](https://bl4ckswordsman.github.io/plezy-apks/)** 
 Add this URL in F-Droid or a compatible client (e.g. [Droid-ify](https://github.com/Droid-ify/client)):
 
 ```
-https://bl4ckswordsman.github.io/plezy-apks/fdroid/repo
+https://bl4ckswordsman.github.io/plezy-apks
 ```
 
 1. Open F-Droid (or Droid-ify)
