@@ -64,7 +64,7 @@ jobs:
           KEYDNAME: ${{ secrets.KEYDNAME }}
         run: |
           {
-            echo "repo_url: \"https://bl4ckswordsman.github.io/plezy-apks\""
+            echo "repo_url: \"https://bl4ckswordsman.github.io/plezy-apks/fdroid/repo\""
             echo "repo_name: \"Plezy APKs\""
             echo "repo_description: \"Standalone Plezy APKs extracted from upstream releases.\""
             echo "repo_keyalias: \"$REPO_KEYALIAS\""
@@ -83,10 +83,15 @@ jobs:
         if: always()
         run: rm -f fdroid/keystore.p12 fdroid/config.yml
 
+      - name: Prepare Pages structure
+        run: |
+          mkdir -p _site/fdroid
+          cp -r fdroid/repo _site/fdroid/repo
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: fdroid/repo
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
