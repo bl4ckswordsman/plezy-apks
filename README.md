@@ -5,6 +5,11 @@
 Standalone `.apk` files automatically extracted from [edde746/plezy](https://github.com/edde746/plezy) releases — ready to install or use with [Obtainium](https://github.com/ImranR98/Obtainium).
 
 ## Install via Obtainium
+[![Get it on Obtainium](https://raw.githubusercontent.com/ImranR98/Obtainium/main/assets/graphics/badge_obtainium.png)](http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/bl4ckswordsman/plezy-apks/releases)
+
+### Manual Obtainium Steps
+<details>
+<summary><strong>Expand Instructions</strong></summary>
 
 1. Open Obtainium
 2. Tap **Add App**
@@ -17,6 +22,8 @@ Standalone `.apk` files automatically extracted from [edde746/plezy](https://git
    - `armeabi-v7a` — older 32-bit devices
    - `x86_64` — emulators / ChromeOS
 5. Done — Obtainium will auto-update Plezy for you
+
+</details>
 
 ## Direct Download
 
