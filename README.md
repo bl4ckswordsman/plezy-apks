@@ -7,6 +7,8 @@ Standalone `.apk` files automatically extracted from [edde746/plezy](https://git
 
 ## Install via F-Droid
 
+[![Add to F-Droid](https://img.shields.io/badge/F--Droid-Add%20Repo-1976D2?logo=fdroid)](https://bl4ckswordsman.github.io/plezy-apks/)
+
 Visit the **[F-Droid repo page](https://bl4ckswordsman.github.io/plezy-apks/)** — tap the link to add the repo directly in your F-Droid client, or scan the QR code.
 
 <details>
