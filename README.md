@@ -1,13 +1,13 @@
 # Plezy APK Releases
 
 [![Extract Plezy APKs](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/extract.yaml/badge.svg)](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/extract.yaml)
-[![Update F-Droid Repo](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/fdroid.yml/badge.svg)](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/fdroid.yml)
+[![Update F-Droid Repo](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/fdroid.yaml/badge.svg)](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/fdroid.yaml)
 
 Standalone `.apk` files automatically extracted from [edde746/plezy](https://github.com/edde746/plezy) releases — ready to install via F-Droid, Obtainium, or direct download.
 
 ## Install via F-Droid
 
-Visit the **[F-Droid repo landing page](https://bl4ckswordsman.github.io/plezy-apks/)** — tap the link to add the repo directly in your F-Droid client, or scan the QR code.
+Visit the **[F-Droid repo page](https://bl4ckswordsman.github.io/plezy-apks/)** — tap the link to add the repo directly in your F-Droid client, or scan the QR code.
 
 <details>
 <summary><strong>Manual setup</strong></summary>
