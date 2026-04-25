@@ -72,7 +72,7 @@ jobs:
             -v "${{ github.workspace }}/fdroid:/repo" \
             -w /repo \
             registry.gitlab.com/fdroid/docker-executable-fdroidserver:latest \
-            fdroid update --create-metadata --verbose
+            update --verbose
 
       - name: Clean up secrets
         if: always()
