@@ -30,12 +30,13 @@ Head to the [Releases](https://github.com/bl4ckswordsman/plezy-apks/releases/lat
 
 > **Not sure which one?** Almost all modern Android phones use `arm64-v8a`.
 
-## Why?
+<details>
+<summary><strong>Under the Hood (Why & How)</strong></summary>
 
+### Why?
 Since Plezy v1.13.0, Android builds are packaged as `.tar.gz` archives. This breaks Obtainium auto-updates and makes manual installation inconvenient. This repo automatically extracts the APKs daily and publishes them as proper GitHub releases.
 
-## How it works
-
+### How it works
 A GitHub Action runs daily and on-demand:
 1. Checks the latest [Plezy release](https://github.com/edde746/plezy/releases)
 2. Skips if the version is already published here
@@ -46,5 +47,6 @@ A GitHub Action runs daily and on-demand:
 ---
 
 ### Run It Yourself
-
 Want to run this yourself? Fork this repo or copy `.github/workflows/extract-apk.yml` into a new repo. No configuration needed — it works out of the box with the default `GITHUB_TOKEN`.
+
+</details>
