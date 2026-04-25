@@ -1,13 +1,32 @@
 # Plezy APK Releases
 
 [![Extract Plezy APKs](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/extract.yaml/badge.svg)](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/extract.yaml)
+[![Update F-Droid Repo](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/fdroid.yml/badge.svg)](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/fdroid.yml)
 
-Standalone `.apk` files automatically extracted from [edde746/plezy](https://github.com/edde746/plezy) releases — ready to install or use with [Obtainium](https://github.com/ImranR98/Obtainium).
+Standalone `.apk` files automatically extracted from [edde746/plezy](https://github.com/edde746/plezy) releases — ready to install via F-Droid, Obtainium, or direct download.
+
+## Install via F-Droid
+
+Add the custom repo in F-Droid or a compatible client (e.g. [Droid-ify](https://github.com/Droid-ify/client)):
+
+```
+https://bl4ckswordsman.github.io/plezy-apks/fdroid/repo
+```
+
+<details>
+<summary><strong>Expand Instructions</strong></summary>
+
+1. Open F-Droid (or Droid-ify)
+2. Go to **Settings → Repositories → Add repository**
+3. Paste the URL above
+4. Search for **Plezy** and install
+
+</details>
 
 ## Install via Obtainium
+
 [![Get it on Obtainium](https://raw.githubusercontent.com/ImranR98/Obtainium/main/assets/graphics/badge_obtainium.png)](http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/bl4ckswordsman/plezy-apks/releases)
 
-### Manual Obtainium Steps
 <details>
 <summary><strong>Expand Instructions</strong></summary>
 
@@ -41,19 +60,25 @@ Head to the [Releases](https://github.com/bl4ckswordsman/plezy-apks/releases/lat
 <summary><strong>Under the Hood (Why & How)</strong></summary>
 
 ### Why?
-Since Plezy v1.13.0, Android builds are packaged as `.tar.gz` archives. This breaks Obtainium auto-updates and makes manual installation inconvenient. This repo automatically extracts the APKs daily and publishes them as proper GitHub releases.
+Since Plezy v1.13.0, Android builds are packaged as `.tar.gz` archives. This breaks Obtainium auto-updates and makes manual installation inconvenient. This repo automatically extracts the APKs daily and publishes them as proper GitHub releases, and also maintains an F-Droid-compatible repo served via GitHub Pages.
 
 ### How it works
-A GitHub Action runs daily and on-demand:
+
+**APK extraction** — runs daily and on-demand:
 1. Checks the latest [Plezy release](https://github.com/edde746/plezy/releases)
 2. Skips if the version is already published here
 3. Downloads all Android `.tar.gz` archives
 4. Extracts the `.apk` files
-5. Creates a new release with standalone APKs + upstream changelog
+5. Creates a new GitHub release with standalone APKs + upstream changelog
+
+**F-Droid repo** — triggers on each new release:
+1. Downloads the APKs from the new GitHub release
+2. Runs `fdroid update` to regenerate the signed index
+3. Deploys the index + APKs to GitHub Pages
 
 ---
 
 ### Run It Yourself
-Want to run this yourself? Fork this repo or copy `.github/workflows/extract-apk.yml` into a new repo. No configuration needed — it works out of the box with the default `GITHUB_TOKEN`.
+Fork this repo or copy `.github/workflows/` into a new repo. The extract workflow needs no configuration — it works out of the box with the default `GITHUB_TOKEN`. The F-Droid workflow additionally requires these repository secrets: `KEYSTORE_BASE64`, `REPO_KEYALIAS`, `KEYPASS`, `KEYDNAME`.
 
 </details>
