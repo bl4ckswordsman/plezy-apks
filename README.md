@@ -1,6 +1,6 @@
 # Plezy APK Releases
 
-[![Extract Plezy APKs](https://github.com/derFrisson/plezy-apks/actions/workflows/extract.yaml/badge.svg)](https://github.com/derFrisson/plezy-apks/actions/workflows/extract.yaml)
+[![Extract Plezy APKs](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/extract.yaml/badge.svg)](https://github.com/bl4ckswordsman/plezy-apks/actions/workflows/extract.yaml)
 
 Standalone `.apk` files automatically extracted from [edde746/plezy](https://github.com/edde746/plezy) releases — ready to install or use with [Obtainium](https://github.com/ImranR98/Obtainium).
 
@@ -10,7 +10,7 @@ Standalone `.apk` files automatically extracted from [edde746/plezy](https://git
 2. Tap **Add App**
 3. Paste this URL:
    ```
-   https://github.com/derFrisson/plezy-apks
+   https://github.com/bl4ckswordsman/plezy-apks
    ```
 4. Set **APK filter regex** to match your device:
    - `arm64-v8a` — most modern phones *(recommended)*
@@ -20,7 +20,7 @@ Standalone `.apk` files automatically extracted from [edde746/plezy](https://git
 
 ## Direct Download
 
-Head to the [Releases](https://github.com/derFrisson/plezy-apks/releases/latest) page and grab the APK for your architecture.
+Head to the [Releases](https://github.com/bl4ckswordsman/plezy-apks/releases/latest) page and grab the APK for your architecture.
 
 | File | Architecture | Devices |
 |------|-------------|---------|
@@ -45,6 +45,6 @@ A GitHub Action runs daily and on-demand:
 
 ---
 
-### Self-hosting
+### Run It Yourself
 
 Want to run this yourself? Fork this repo or copy `.github/workflows/extract-apk.yml` into a new repo. No configuration needed — it works out of the box with the default `GITHUB_TOKEN`.
