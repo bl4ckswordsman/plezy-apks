@@ -49,6 +49,9 @@ jobs:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: echo "$KEYSTORE_BASE64" | base64 -d > fdroid/keystore.p12
 
+      - name: Install fdroidserver
+        run: uv tool install fdroidserver
+
       - name: Write fdroid config
         env:
           REPO_KEYALIAS: ${{ secrets.REPO_KEYALIAS }}
@@ -65,14 +68,11 @@ jobs:
             echo "keydname: \"$KEYDNAME\""
             echo "keystore: \"keystore.p12\""
           } > fdroid/config.yml
+          chmod 0600 fdroid/config.yml
 
       - name: Run fdroid update
-        run: |
-          docker run --rm \
-            -v "${{ github.workspace }}/fdroid:/repo" \
-            -w /repo \
-            registry.gitlab.com/fdroid/docker-executable-fdroidserver:latest \
-            update --verbose
+        working-directory: ${{ github.workspace }}/fdroid
+        run: fdroid update --verbose
 
       - name: Clean up secrets
         if: always()
