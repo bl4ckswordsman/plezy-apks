@@ -7,14 +7,16 @@ Standalone `.apk` files automatically extracted from [edde746/plezy](https://git
 
 ## Install via F-Droid
 
-Add the custom repo in F-Droid or a compatible client (e.g. [Droid-ify](https://github.com/Droid-ify/client)):
+Visit the **[F-Droid repo landing page](https://bl4ckswordsman.github.io/plezy-apks/)** — tap the link to add the repo directly in your F-Droid client, or scan the QR code.
+
+<details>
+<summary><strong>Manual setup</strong></summary>
+
+Add this URL in F-Droid or a compatible client (e.g. [Droid-ify](https://github.com/Droid-ify/client)):
 
 ```
 https://bl4ckswordsman.github.io/plezy-apks/fdroid/repo
 ```
-
-<details>
-<summary><strong>Expand Instructions</strong></summary>
 
 1. Open F-Droid (or Droid-ify)
 2. Go to **Settings → Repositories → Add repository**
@@ -74,7 +76,7 @@ Since Plezy v1.13.0, Android builds are packaged as `.tar.gz` archives. This bre
 **F-Droid repo** — triggers on each new release:
 1. Downloads the APKs from the new GitHub release
 2. Runs `fdroid update` to regenerate the signed index
-3. Deploys the index + APKs to GitHub Pages
+3. Deploys the index + APKs to GitHub Pages (no binaries committed to git)
 
 ---
 
