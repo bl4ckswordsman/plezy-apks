@@ -79,6 +79,9 @@ jobs:
         working-directory: ${{ github.workspace }}/fdroid
         run: fdroid update --verbose
 
+      - name: Debug repo contents
+        run: find fdroid/repo -name "*.png" | head -20
+
       - name: Clean up secrets
         if: always()
         run: rm -f fdroid/keystore.p12 fdroid/config.yml
