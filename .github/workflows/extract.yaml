@@ -2,8 +2,8 @@ name: Extract Plezy APKs
 
 on:
   schedule:
-    # Run daily at 06:00 UTC
-    - cron: "0 6 * * *"
+    # Run hourly at xx:42
+    - cron: "42 * * * *"
   workflow_dispatch: # Allow manual trigger
 
 permissions:
