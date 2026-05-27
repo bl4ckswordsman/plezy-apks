@@ -75,6 +75,38 @@ jobs:
           } > fdroid/config.yml
           chmod 0600 fdroid/config.yml
 
+      - name: Write release notes / changelog
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 1. Locate aapt in the pre-installed Android SDK
+          AAPT_PATH=$(find $ANDROID_HOME/build-tools -name aapt | sort -V | tail -n 1)
+          if [ -z "$AAPT_PATH" ]; then
+            echo "::error::Could not find aapt in Android SDK"
+            exit 1
+          fi
+          
+          # 2. Extract the versionCode from one of the downloaded APKs
+          APK_FILE=$(find fdroid/repo -name "*.apk" | head -n 1)
+          if [ -z "$APK_FILE" ]; then
+            echo "::error::No APK file found in fdroid/repo"
+            exit 1
+          fi
+          
+          VERSION_CODE=$("$AAPT_PATH" dump badging "$APK_FILE" | grep -oP "versionCode='\K[0-9]+")
+          echo "Resolved version code: $VERSION_CODE"
+          
+          # 3. Fetch the upstream release body from edde746/plezy
+          RELEASE_BODY=$(gh api repos/edde746/plezy/releases/tags/$RELEASE_TAG | jq -r '.body')
+          
+          # 4. Create the changelog directory
+          CHANGELOG_DIR="fdroid/metadata/com.edde746.plezy/en-US/changelogs"
+          mkdir -p "$CHANGELOG_DIR"
+          
+          # 5. Write the release body to the changelog file
+          echo "$RELEASE_BODY" > "${CHANGELOG_DIR}/${VERSION_CODE}.txt"
+          echo "Changelog written to ${CHANGELOG_DIR}/${VERSION_CODE}.txt"
+
       - name: Run fdroid update
         working-directory: ${{ github.workspace }}/fdroid
         run: fdroid update --verbose
