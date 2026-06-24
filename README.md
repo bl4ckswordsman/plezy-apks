@@ -29,7 +29,9 @@ https://bl4ckswordsman.github.io/plezy-apks/fdroid/repo
 
 ## Install via Obtainium
 
-[![Get it on Obtainium](https://raw.githubusercontent.com/ImranR98/Obtainium/main/assets/graphics/badge_obtainium.png)](http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/bl4ckswordsman/plezy-apks/releases)
+<a href="https://apps.obtainium.page/redirect?r=obtainium://add/https://github.com/bl4ckswordsman/plezy-apks/releases">
+  <img src="https://raw.githubusercontent.com/ImranR98/Obtainium/main/assets/graphics/badge_obtainium.png" alt="Get it on Obtainium" height="100" />
+</a>
 
 <details>
 <summary><strong>Expand Instructions</strong></summary>
