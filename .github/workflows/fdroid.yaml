@@ -79,33 +79,35 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 1. Locate aapt in the pre-installed Android SDK
-          AAPT_PATH=$(find $ANDROID_HOME/build-tools -name aapt | sort -V | tail -n 1)
-          if [ -z "$AAPT_PATH" ]; then
-            echo "::error::Could not find aapt in Android SDK"
-            exit 1
+          # 1. Fetch the upstream release body from edde746/plezy
+          RELEASE_BODY=$(gh api repos/edde746/plezy/releases/tags/$RELEASE_TAG | jq -r '.body // ""')
+
+          # 2. Strip markdown formatting (headers, bold, bullets, links, code fences)
+          #    and truncate to fdroidserver's 500-char whatsNew limit
+          CHANGELOG=$(printf '%s' "$RELEASE_BODY" \
+            | sed 's/```[^`]*```//g' \
+            | sed 's/`[^`]*`//g' \
+            | sed 's/^#+[[:space:]]*//' \
+            | sed 's/\*\*\([^*]*\)\*\*/\1/g' \
+            | sed 's/\*\([^*]*\)\*/\1/g' \
+            | sed 's/!\[.*\](.*)//' \
+            | sed 's/\[\([^]]*\)\]([^)]*)/\1/g' \
+            | sed '/^[[:space:]]*$/d' \
+            | cut -c1-500)
+
+          if [ -z "$CHANGELOG" ]; then
+            echo "::warning::Release body is empty — skipping changelog write"
+            exit 0
           fi
-          
-          # 2. Extract the versionCode from one of the downloaded APKs
-          APK_FILE=$(find fdroid/repo -name "*.apk" | head -n 1)
-          if [ -z "$APK_FILE" ]; then
-            echo "::error::No APK file found in fdroid/repo"
-            exit 1
-          fi
-          
-          VERSION_CODE=$("$AAPT_PATH" dump badging "$APK_FILE" | grep -oP "versionCode='\K[0-9]+")
-          echo "Resolved version code: $VERSION_CODE"
-          
-          # 3. Fetch the upstream release body from edde746/plezy
-          RELEASE_BODY=$(gh api repos/edde746/plezy/releases/tags/$RELEASE_TAG | jq -r '.body')
-          
-          # 4. Create the changelog directory
+
+          # 3. Write as default.txt — fdroidserver uses this as the whatsNew
+          #    fallback for repos that have no Builds: entries (binary-only repos).
+          #    A versionCode-named file is only read when that versionCode appears
+          #    in the app's Builds: list, which we don't maintain.
           CHANGELOG_DIR="fdroid/metadata/com.edde746.plezy/en-US/changelogs"
           mkdir -p "$CHANGELOG_DIR"
-          
-          # 5. Write the release body to the changelog file
-          echo "$RELEASE_BODY" > "${CHANGELOG_DIR}/${VERSION_CODE}.txt"
-          echo "Changelog written to ${CHANGELOG_DIR}/${VERSION_CODE}.txt"
+          printf '%s' "$CHANGELOG" > "${CHANGELOG_DIR}/default.txt"
+          echo "Changelog written to ${CHANGELOG_DIR}/default.txt ($(echo -n "$CHANGELOG" | wc -c) chars)"
 
       - name: Run fdroid update
         working-directory: ${{ github.workspace }}/fdroid
